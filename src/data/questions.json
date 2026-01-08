@@ -20295,9 +20295,9 @@
     },
     {
       "id": "sectional-physics-1",
-      "title": "Physics Sectional Test 1",
+      "title": "Physics Chapters - Question Bank",
       "type": "practice",
-      "description": "Focus on Physics - Mechanics, Electrodynamics, Modern Physics",
+      "description": "Chapter-wise Physics questions - Mechanics, Electrodynamics, Modern Physics",
       "questions": [
         {
           "id": 1,
@@ -22823,9 +22823,9 @@
     },
     {
       "id": "sectional-chemistry-1",
-      "title": "Chemistry Sectional Test 1",
+      "title": "Chemistry Chapters - Question Bank",
       "type": "practice",
-      "description": "Focus on Chemistry - Physical, Organic, Inorganic",
+      "description": "Chapter-wise Chemistry questions - Physical, Organic, Inorganic",
       "questions": [
         {
           "id": 1,
@@ -25351,9 +25351,9 @@
     },
     {
       "id": "sectional-mathematics-1",
-      "title": "Mathematics Sectional Test 1",
+      "title": "Mathematics Chapters - Question Bank",
       "type": "practice",
-      "description": "Focus on Mathematics - Algebra, Calculus, Coordinate Geometry",
+      "description": "Chapter-wise Mathematics questions - Algebra, Calculus, Coordinate Geometry",
       "questions": [
         {
           "id": 1,

@@ -20,12 +20,23 @@ function PracticeMode() {
 
   useEffect(() => {
     // Load questions
+    console.log('Loading test:', testId);
+    console.log('questionsData exists:', !!questionsData);
+    console.log('questionsData.tests exists:', !!questionsData?.tests);
+    
     if (questionsData && questionsData.tests) {
       const test = questionsData.tests.find(t => t.id === testId);
-      if (test) {
-        setQuestions(test.questions || []);
+      console.log('Found test:', test ? test.title : 'NOT FOUND');
+      console.log('Questions count:', test?.questions?.length);
+      
+      if (test && test.questions && test.questions.length > 0) {
+        setQuestions(test.questions);
         setTestTitle(test.title || 'Practice Mode');
+      } else {
+        console.error('Test not found or has no questions');
       }
+    } else {
+      console.error('questionsData not loaded properly');
     }
   }, [testId]);
 
