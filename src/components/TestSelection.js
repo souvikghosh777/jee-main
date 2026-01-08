@@ -128,7 +128,13 @@ function TestSelection() {
   });
 
   const startTest = (testId) => {
-    navigate(`/exam/${testId}`);
+    // Check if it's a sectional/practice test
+    const test = availableTests.find(t => t.id === testId);
+    if (test && test.category === 'sectional') {
+      navigate(`/practice/${testId}`);
+    } else {
+      navigate(`/exam/${testId}`);
+    }
   };
 
   const getDifficultyColor = (difficulty) => {

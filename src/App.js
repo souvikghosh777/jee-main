@@ -5,6 +5,7 @@ import Login from './components/Auth/Login';
 import Signup from './components/Auth/Signup';
 import TestSelection from './components/TestSelection';
 import ExamScreen from './components/ExamInterface/ExamScreen';
+import PracticeMode from './components/ExamInterface/PracticeMode';
 import ResultPage from './components/Results/ResultPage';
 import AdminDashboard from './components/Admin/AdminDashboard';
 
@@ -62,6 +63,10 @@ function App() {
           <Route 
             path="/exam/:testId" 
             element={user ? <ExamScreen /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/practice/:testId" 
+            element={user ? <PracticeMode /> : <Navigate to="/login" />} 
           />
           <Route 
             path="/result/:resultId" 
