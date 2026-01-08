@@ -7,6 +7,7 @@ function PracticeMode() {
   const navigate = useNavigate();
   
   const [questions, setQuestions] = useState([]);
+  const [testTitle, setTestTitle] = useState('Practice Mode');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState('');
   const [showSolution, setShowSolution] = useState(false);
@@ -23,6 +24,7 @@ function PracticeMode() {
       const test = questionsData.tests.find(t => t.id === testId);
       if (test) {
         setQuestions(test.questions || []);
+        setTestTitle(test.title || 'Practice Mode');
       }
     }
   }, [testId]);
@@ -84,24 +86,36 @@ function PracticeMode() {
   const isCorrect = userAnswer === currentQuestion.correctAnswer;
 
   return (
-    <div className="practice-mode-container">
+    <div className="practice-mode">
       {/* Header */}
       <div className="practice-header">
-        <div className="practice-progress">
-          <span>Question {currentIndex + 1} of {questions.length}</span>
-          <div className="progress-bar">
-            <div 
-              className="progress-fill" 
-              style={{width: `${((currentIndex + 1) / questions.length) * 100}%`}}
-            ></div>
-          </div>
+        <div className="practice-title">
+          <h2>{testTitle}</h2>
+        </div>
+        <div className="practice-progress-bar">
+          <div 
+            className="practice-progress-fill" 
+            style={{width: `${((currentIndex + 1) / questions.length) * 100}%`}}
+          ></div>
         </div>
         <div className="practice-stats">
-          <span className="stat-correct">✓ {progress.correct}</span>
-          <span className="stat-incorrect">✗ {progress.incorrect}</span>
-          <span className="stat-skipped">⊘ {progress.skipped}</span>
+          <div className="stat-item">
+            <span className="stat-icon">✓</span>
+            <span className="stat-value stat-correct">{progress.correct}</span>
+            <span className="stat-label">Correct</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-icon">✗</span>
+            <span className="stat-value stat-incorrect">{progress.incorrect}</span>
+            <span className="stat-label">Incorrect</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-icon">⊘</span>
+            <span className="stat-value stat-skipped">{progress.skipped}</span>
+            <span className="stat-label">Skipped</span>
+          </div>
         </div>
-        <button onClick={() => navigate('/tests')} className="btn-exit">Exit</button>
+        <button onClick={() => navigate('/tests')} className="btn btn-danger">Exit Practice</button>
       </div>
 
       {/* Question Content */}

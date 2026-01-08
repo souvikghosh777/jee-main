@@ -1705,23 +1705,52 @@ body.dark-mode::before {
   background: var(--light-bg);
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+/* Animated Background for Practice Mode */
+.practice-mode::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.practice-mode > * {
+  position: relative;
+  z-index: 1;
 }
 
 .practice-header {
   background: var(--white);
-  box-shadow: var(--shadow);
-  padding: 20px 25px;
+  box-shadow: var(--shadow-lg);
+  padding: 25px 30px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+  flex-direction: column;
+  gap: 20px;
+  border-bottom: 4px solid var(--primary-color);
 }
 
-.practice-title {
-  font-size: 22px;
+.practice-title h2 {
+  font-size: 26px;
   color: var(--primary-color);
   font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.practice-title h2::before {
+  content: '📚';
+  font-size: 28px;
 }
 
 .practice-progress-bar {
@@ -1742,9 +1771,42 @@ body.dark-mode::before {
 
 .practice-stats {
   display: flex;
-  gap: 20px;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 15px 25px;
+  background: var(--light-bg);
+  border-radius: 12px;
+  min-width: 120px;
+  transition: transform 0.3s;
+}
+
+.stat-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.stat-icon {
+  font-size: 24px;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
   font-weight: 600;
-  font-size: 14px;
 }
 
 .stat-correct {
@@ -1769,10 +1831,17 @@ body.dark-mode::before {
 
 .practice-question-card {
   background: var(--white);
-  border-radius: 12px;
-  padding: 35px;
-  box-shadow: var(--shadow);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: var(--shadow-lg);
   margin-bottom: 20px;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+}
+
+.practice-question-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
 }
 
 .practice-question-header {
@@ -1796,15 +1865,16 @@ body.dark-mode::before {
 }
 
 .practice-question-text {
-  font-size: 18px;
-  line-height: 1.8;
+  font-size: 19px;
+  line-height: 1.9;
   margin: 25px 0 30px 0;
   color: var(--text-primary);
-  padding: 20px;
-  background: var(--light-bg);
-  border-radius: 8px;
-  border-left: 4px solid var(--primary-color);
+  padding: 25px;
+  background: linear-gradient(to right, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+  border-radius: 12px;
+  border-left: 5px solid var(--primary-color);
   font-weight: 500;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .practice-options {
@@ -1897,11 +1967,12 @@ body.dark-mode::before {
 
 .practice-solution-box {
   margin-top: 30px;
-  padding: 25px;
-  background: var(--light-bg);
-  border-radius: 10px;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+  border-radius: 12px;
   border-left: 5px solid var(--primary-color);
-  animation: slideDown 0.3s ease;
+  animation: slideDown 0.4s ease;
+  box-shadow: var(--shadow);
 }
 
 @keyframes slideDown {
@@ -1962,14 +2033,25 @@ body.dark-mode::before {
 
 .practice-controls {
   display: flex;
-  gap: 12px;
-  margin-top: 30px;
+  gap: 15px;
+  margin-top: 35px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .practice-controls .btn {
   flex: 1;
-  min-width: 140px;
+  min-width: 150px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.practice-controls .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
 .practice-completion-card {
@@ -1981,8 +2063,23 @@ body.dark-mode::before {
 }
 
 .completion-icon {
-  font-size: 80px;
-  margin-bottom: 25px;
+  font-size: 100px;
+  margin-bottom: 30px;
+  animation: bounceIn 0.6s ease;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .completion-title {
