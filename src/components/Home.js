@@ -26,6 +26,9 @@ function Home() {
                     Admin Panel
                   </button>
                 )}
+                <button onClick={() => navigate('/profile')} className="btn btn-secondary">
+                  👤 Profile
+                </button>
                 <button onClick={logout} className="btn btn-outline">
                   Logout
                 </button>

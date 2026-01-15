@@ -8,6 +8,7 @@ import ExamScreen from './components/ExamInterface/ExamScreen';
 import PracticeMode from './components/ExamInterface/PracticeMode';
 import ResultPage from './components/Results/ResultPage';
 import AdminDashboard from './components/Admin/AdminDashboard';
+import Profile from './components/Profile';
 
 // Auth Context
 export const AuthContext = React.createContext();
@@ -75,6 +76,10 @@ function App() {
           <Route 
             path="/admin" 
             element={user?.isAdmin ? <AdminDashboard /> : <Navigate to="/" />} 
+          />
+          <Route 
+            path="/profile" 
+            element={user ? <Profile /> : <Navigate to="/login" />} 
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
